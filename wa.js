@@ -2,16 +2,15 @@
 var sources = new Array();
 var actx;
 var songs = ['src1.mp3','src2.mp3'];
-let div = document.querySelector('.out')
-let range = document.querySelector('.range')
-function change(){
- div.innerHTML = range.value;
- console.log(range);
- console.log(div);
+let div;
+function change(val){
+ div[0].innerHTML = val;
+ console.log(val);
 }
 async function start(){
   console.log("WELCOME!!");
-  range = document.getElementsByClassName('range');
+  div = document.getElementsByClassName('out');
+
   try{
       actx = new AudioContext();
   }catch(e){
