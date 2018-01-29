@@ -4,9 +4,15 @@
     <title> WEB AUDIO API(test) </title>
 
     <style>
-    .range{
+    input[type="button"]{
+      border: 5px grey solid;
+      border-radius: 10px;
+
+    }
+    input[type="range"]{
       border : 5px grey solid;
       border-radius: 10px;
+      padding: 10px 10px 10px 10px;
     }
     </style>
     <script src="wa.js"></script>
@@ -16,10 +22,13 @@
     <h1 style="color : red; text-align : center;" >
       WEB AUDIO TEST CASE #1.
     </h1>
-    <button onclick="play()">Play</button>
-    <input class = 'range' type = 'range' value="0.5" min='0' max  = '1' step="0.1" oninput="change(this.value)" >
+    <input type="button" value = "Play" onclick="play()"/>
+    <input type="button" value="Pause"/>
+    <input type="button" value="Stop" onclick="stop()"/>
+    <br>
+    <br>Track 1:<input class = 'range' type = 'range' value="0.5" min='0' max  = '1' step="0.1" oninput="change(this.value)" >
+    <br><br>Track 2:<input type="range" min="0" max="1" step="0.1" value="0.5"\>
 
-    <button onclick="stop()" >Stop</button><br>
     <div class="out"></div>
 
   </body>

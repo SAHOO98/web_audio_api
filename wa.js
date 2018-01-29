@@ -18,6 +18,7 @@ async function start(){
     console.log('WebAudio api is not supported!!');
   }
     gainNode  = actx.createGain();
+    gainNode.gain.value = 0.4;
     await getBuffers(actx,songs);
     console.log(sources);
     console.log(sources.length);
@@ -59,7 +60,7 @@ async function getBuffers(actx,songs){
 function play() {
   sources[1].connect(gainNode);
   sources[0].connect(actx.destination);
-  gainNode.gain.value = 0.4;
+
   gainNode.connect(actx.destination);
   sources[0].start(0);
   sources[1].start(0);
