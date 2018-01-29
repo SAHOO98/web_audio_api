@@ -1,27 +1,27 @@
 //"use strict";
 var sources = new Array();
 var actx;
+let gainNode;
 var songs = ['src1.mp3','src2.mp3'];
 let div;
 function change(val){
  div[0].innerHTML = val;
+ gainNode.gain.value = val;
  console.log(val);
 }
 async function start(){
   console.log("WELCOME!!");
   div = document.getElementsByClassName('out');
-
   try{
       actx = new AudioContext();
   }catch(e){
     console.log('WebAudio api is not supported!!');
-
   }
-
+    gainNode  = actx.createGain();
     await getBuffers(actx,songs);
     console.log(sources);
     console.log(sources.length);
-    sources[0].connect(actx.destination);
+  //  sources[0].connect(actx.destination);
 }
 
 function load_song(url){
@@ -57,11 +57,14 @@ async function getBuffers(actx,songs){
 //console.log(buffers.length);
 }
 function play() {
-
+  sources[1].connect(gainNode);
+  sources[0].connect(actx.destination);
+  gainNode.gain.value = 0.4;
+  gainNode.connect(actx.destination);
   sources[0].start(0);
-//  sources[1].start(0);
+  sources[1].start(0);
 }
 function stop(){
   sources[0].stop(0);
-  //sources[1].stop(0);
+  sources[1].stop(0);
 }
